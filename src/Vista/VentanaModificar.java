@@ -269,7 +269,7 @@ public class VentanaModificar extends javax.swing.JFrame {
                 Conexion conn = new Conexion();
                 Connection con = conn.conectar();
 
-                PreparedStatement modificar = con.prepareStatement("UPDATE inventario SET Codigo=?, Nombre=?, Marca=?, Catidad=?, Precio=? WHERE Nombre=?");
+                PreparedStatement modificar = con.prepareStatement("UPDATE inventario SET Codigo=?, Nombre=?, Marca=?, Catidad=?, Precio=? WHERE Codigo=?");
 
                 modificar.setInt(1, Integer.parseInt(codigo));
                 modificar.setString(2, nombre);
