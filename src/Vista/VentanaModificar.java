@@ -31,13 +31,13 @@ public class VentanaModificar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtCodigo = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         Btn_Guardar = new javax.swing.JButton();
         Btn_Atras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        LabelCod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +85,9 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoPeq.png"))); // NOI18N
 
+        LabelCod.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        LabelCod.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,8 +97,8 @@ public class VentanaModificar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelCod, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,9 +140,9 @@ public class VentanaModificar extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNombre)
+                    .addComponent(LabelCod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -180,7 +183,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_AtrasActionPerformed
 
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
-        Guardar();
+        Modificar();
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     /**
@@ -224,6 +227,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Atras;
     private javax.swing.JButton Btn_Guardar;
+    private javax.swing.JLabel LabelCod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -233,50 +237,35 @@ public class VentanaModificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 
     void Campos(int fila) {
+        LabelCod.setText(ventanaInicio.Tabla.getValueAt(fila, 0).toString());
+        txtNombre.setText(ventanaInicio.Tabla.getValueAt(fila, 1).toString());
+        txtMarca.setText(ventanaInicio.Tabla.getValueAt(fila, 2).toString());
+        txtCantidad.setText(ventanaInicio.Tabla.getValueAt(fila, 3).toString());
+        txtPrecio.setText(ventanaInicio.Tabla.getValueAt(fila, 4).toString());           
+    }    
+    private void Modificar() {
 
-        int codigo = Integer.parseInt((String) ventanaInicio.Tabla.getValueAt(fila, 0).toString());
-        String nombre = (String) ventanaInicio.Tabla.getValueAt(fila, 1);
-        String marca = (String) ventanaInicio.Tabla.getValueAt(fila, 2);
-        int cantidad = Integer.parseInt((String) ventanaInicio.Tabla.getValueAt(fila, 3).toString());
-        int precio = Integer.parseInt((String) ventanaInicio.Tabla.getValueAt(fila, 4).toString());
-
-        txtCodigo.setText("" + codigo);
-        txtNombre.setText(nombre);
-        txtMarca.setText(marca);
-        txtCantidad.setText("" + cantidad);
-        txtPrecio.setText("" + precio);
-    }
-
-    private void Guardar() {
-
-        String codigo = txtCodigo.getText();
+        String codigo = LabelCod.getText();
         String nombre = txtNombre.getText();
         String marca = txtMarca.getText();
         String cantidad = txtCantidad.getText();
         String precio = txtPrecio.getText();
 
         try {
-            if (codigo.equals("") || nombre.equals("") || marca.equals("") || cantidad.equals("") || precio.equals("")) {
+            if ( nombre.equals("") || marca.equals("") || cantidad.equals("") || precio.equals("")) {
                 JOptionPane.showMessageDialog(null, "Algun campo vacio");
             } else {
                 Conexion conn = new Conexion();
                 Connection con = conn.conectar();
 
-                PreparedStatement modificar = con.prepareStatement("UPDATE inventario SET Codigo=?, Nombre=?, Marca=?, Catidad=?, Precio=? WHERE Codigo=?");
+                PreparedStatement modificar = con.prepareStatement("UPDATE inventario set Nombre = '"+ nombre + "', Marca = '"+ marca + "', Cantidad = "+ cantidad+", Precio ="+precio+" WHERE Codigo = " + codigo);
 
-                modificar.setInt(1, Integer.parseInt(codigo));
-                modificar.setString(2, nombre);
-                modificar.setString(3, marca);
-                modificar.setInt(4, Integer.parseInt(cantidad));
-                modificar.setInt(5, Integer.parseInt(precio));
-                modificar.setInt(6, Integer.parseInt(codigo));
                 modificar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos registrados");
                 VentanaInicio ventanaInicio = new VentanaInicio();
@@ -284,7 +273,7 @@ public class VentanaModificar extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (Exception e) {
-            System.out.println("Error insertar datos");
+            System.out.println("Error insertar datos" + e);
         }
 
     }

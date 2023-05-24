@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    private String url ="jdbc:mysql://localhost/proyectofinal";
+    private String url ="jdbc:mysql://127.0.0.1:3306/proyectofinal";
     private String usuario = "root";
-    private String contraseña = "12345";
+    private String contraseña = "jM20221578075";
     
     public Connection conectar(){
         
